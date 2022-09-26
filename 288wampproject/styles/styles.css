@@ -1,0 +1,100 @@
+body {
+  background: #eceef3;
+  font-family: 'Open Sans', sans-serif;
+}
+td{
+  text-transform: capitalize;
+}
+
+button.btn-base {
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 1.5rem;
+  font-size: 16px;
+}
+
+button.btn-forms {
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 16px;
+  margin-top: 1rem;
+}
+
+button.table-button{
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 16px;
+}
+
+form.table-form{
+  margin: 0;
+}
+
+button.btn-primary {
+  border: 2px solid #cd0533;
+  background: #cd0533;
+  color: #ffffff;
+}
+
+button.btn-secondary {
+  border: 2px solid #cd0533;
+  background: #ffffff;
+  color: #cd0533;
+}
+
+button.btn-tertiary {
+  border: 2px solid #ffffff;
+  background: #5f696c;
+  color: #ffffff;
+}
+button.btn-primary:hover {
+  border: 2px solid #ffffff;
+  background: rgba(204, 0, 51, 0.75);
+  color: #ffffff;
+}
+
+button.btn-secondary:hover {
+  border: 2px solid #cd0533;
+  background: rgba(255, 255, 255, 0.53);
+  color: #cd0533;
+}
+
+button.btn-tertiary:hover {
+  border: 2px solid #ffffff;
+  background: rgba(147, 110, 110, 0.92);
+  color: #ffffff;
+}
+
+td {
+  font-size: 20px !important;
+}
+
+input.form-text {
+  border-radius: 5px;
+  height: 2rem;
+  width: auto;
+}
+
+#student-gpa {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#student-gpa td, #student-gpa th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#student-gpa tr:nth-child(even){background-color: #f2f2f2;}
+
+#student-gpa tr:hover {background-color: #ddd;}
+
+#student-gpa th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #cd0533;
+  color: white;
+}

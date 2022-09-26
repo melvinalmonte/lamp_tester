@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Course</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <h1>Manage Course</h1>
+    <h3>All fields are required when adding a course</h3>
+    <h4>When deleting a student, you only need to enter a course's ID</h4>
+    <form action="courses.php" method="POST">
+      <table>
+        <tr>
+          <td>Course ID:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Course ID"
+              name="ID_course"
+              id="ID_course"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Course Code:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Course Code"
+              name="course_code"
+              id="course_code"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Course Description:</td>
+          <td>
+            <textarea
+              class="form-text"
+              type="text"
+              placeholder="Course Description"
+              name="course_desc"
+              id="course_desc"
+            ></textarea>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input
+              type="radio"
+              value="Search course"
+              name="option"
+              id="Search"
+            />
+            Search&nbsp;&nbsp;
+            <input type="radio" value="Add course" name="option" id="Add" />
+            Add&nbsp;&nbsp;
+            <input type="radio" value="Edit course" name="option" id="Edit" />
+            Edit&nbsp;&nbsp;
+            <input
+              type="radio"
+              value="Delete course"
+              name="option"
+              id="Delete"
+            />
+            Delete
+          </td>
+        </tr>
+      </table>
+      <button
+        class="btn-secondary btn-forms"
+        type="submit"
+        name="button"
+        id="Button"
+      >
+        Submit
+      </button>
+    </form>
+    <br />
+    <form action="./index.html" method="get">
+      <button class="btn-secondary btn-forms" type="submit">
+        Go Back to Main Menu
+      </button>
+    </form>
+  </body>
+</html>
+
+<script>
+  //ID_student.value = "Welcome!";
+  document.getElementById("ID_course").value = "error";
+
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    query = decodeURIComponent(query);
+    var vars = query.split("&"); //%26 is &
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("="); //%3D is =
+      if (pair[0] == variable) {
+        return pair[1];
+      }
+    }
+    return ""; //return(false);
+  }
+
+  var ib = getQueryVariable("ID_course");
+  if (ib == "") {
+    document.getElementById("ID_course").value = "No value provided.";
+  } else {
+    while (ib.includes("+")) {
+      ib = ib.replace("+", " ", ib);
+    }
+    document.getElementById("ID_course").value = ib;
+  }
+
+  var ib = getQueryVariable("course_code");
+  document.getElementById("course_code").value = ib;
+
+  var ib = getQueryVariable("course_desc");
+  document.getElementById("course_desc").value = String(ib).replace(/\+/g, " ");
+</script>

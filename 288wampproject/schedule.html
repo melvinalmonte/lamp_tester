@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Schedule</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <h1>Manage Schedule</h1>
+    <h3>All fields are required when adding a schedule</h3>
+    <h4>When deleting a schedule, you only need to enter a schedule's ID</h4>
+    <form action="schedule.php" method="POST">
+      <table>
+        <tr>
+          <td>Schedule ID:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Schedule ID"
+              name="ID_schedule"
+              id="ID_schedule"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Student ID:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Student ID"
+              name="ID_student"
+              id="ID_student"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Course ID:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Course ID"
+              name="ID_course"
+              id="ID_course"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Schedule Year:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Schedule Year"
+              name="sched_yr"
+              id="sched_yr"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Schedule Semester:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Schedule Semester"
+              name="sched_sem"
+              id="sched_sem"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Grade Letter:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="ie: A, B, C...F"
+              name="grade_letter"
+              id="grade_letter"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input
+              type="radio"
+              value="search_schedule"
+              name="option"
+              id="Search"
+            />
+            Search&nbsp;&nbsp;
+            <input type="radio" value="add_schedule" name="option" id="Add" />
+            Add&nbsp;&nbsp;
+            <input type="radio" value="edit_schedule" name="option" id="Edit" />
+            Edit&nbsp;&nbsp;
+            <input
+              type="radio"
+              value="delete_schedule"
+              name="option"
+              id="Delete"
+            />
+            Delete
+          </td>
+        </tr>
+      </table>
+      <button
+        class="btn-secondary btn-forms"
+        type="submit"
+        name="button"
+        id="Button"
+      >
+        Submit
+      </button>
+    </form>
+
+    <form action="./index.html" method="get">
+      <button class="btn-secondary btn-forms" type="submit">
+        Go Back to Main Menu
+      </button>
+    </form>
+  </body>
+</html>
+
+<script>
+  //ID_student.value = "Welcome!";
+  document.getElementById("ID_schedule").value = "error";
+
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    query = decodeURIComponent(query);
+    var vars = query.split("&"); //%26 is &
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("="); //%3D is =
+      if (pair[0] == variable) {
+        return pair[1];
+      }
+    }
+    return ""; //return(false);
+  }
+
+  var ib = getQueryVariable("ID_schedule");
+  if (ib == "") {
+    document.getElementById("ID_schedule").value = "No value provided.";
+  } else {
+    while (ib.includes("+")) {
+      ib = ib.replace("+", " ", ib);
+    }
+    document.getElementById("ID_schedule").value = ib;
+  }
+  var ib = getQueryVariable("ID_student");
+  document.getElementById("ID_student").value = ib;
+
+  var ib = getQueryVariable("ID_course");
+  document.getElementById("ID_course").value = ib;
+
+  var ib = getQueryVariable("sched_yr");
+  document.getElementById("sched_yr").value = ib;
+
+  var ib = getQueryVariable("sched_sem");
+  document.getElementById("sched_sem").value = String(ib).toUpperCase();
+
+  var ib = getQueryVariable("grade_letter");
+  document.getElementById("grade_letter").value = String(ib).toUpperCase();
+</script>

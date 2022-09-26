@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Student</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <h1>Manage Student</h1>
+    <h3>All fields are required when adding a student</h3>
+    <h4>When deleting a student, you only need to enter a student's ID</h4>
+    <form action="students.php" method="POST">
+      <table>
+        <tr>
+          <td>Student ID:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Student ID"
+              name="ID_student"
+              id="ID_student"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>First Name:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="First Name"
+              name="fname"
+              id="fname"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Last Name:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Last Name"
+              name="lname"
+              id="lname"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Phone:</td>
+          <td>
+            <input
+              class="form-text"
+              style="font-family: 'Terminal'; font-size: 90%"
+              type="tel"
+              placeholder="(###) ###-####"
+              name="phone"
+              id="phone"
+              pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Email Address:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Email"
+              name="email"
+              id="email"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Status:</td>
+          <td>
+            <input type="radio" name="status" id="status0" value="0" checked />
+            Inactive
+            <input type="radio" name="status" id="status1" value="1" /> Active
+          </td>
+        </tr>
+
+        <tr>
+          <td>Start Date:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="Start Date yyyy-mm-dd"
+              name="start_dte"
+              id="start_dte"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>End Date:</td>
+          <td>
+            <input
+              class="form-text"
+              type="text"
+              placeholder="End Date yyyy-mm-dd"
+              name="end_dte"
+              id="end_dte"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input
+              type="radio"
+              value="Search Student"
+              name="option"
+              id="Search"
+            />
+            Search&nbsp;&nbsp;
+            <input type="radio" value="Add Student" name="option" id="Add" />
+            Add&nbsp;&nbsp;
+            <input type="radio" value="Edit Student" name="option" id="Edit" />
+            Edit&nbsp;&nbsp;
+            <input
+              type="radio"
+              value="Delete Student"
+              name="option"
+              id="Delete"
+            />
+            Delete<br />
+          </td>
+        </tr>
+      </table>
+      <button
+        class="btn-secondary btn-forms"
+        type="submit"
+        name="button"
+        id="Button"
+      >
+        Submit
+      </button>
+    </form>
+    <br />
+    <form action="./index.html" method="get">
+      <button class="btn-secondary btn-forms" type="submit">
+        Go Back to Main Menu
+      </button>
+    </form>
+  </body>
+</html>
+
+<script>
+  //ID_student.value = "Welcome!";
+  document.getElementById("ID_student").value = "error";
+
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    query = decodeURIComponent(query);
+    var vars = query.split("&"); //%26 is &
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("="); //%3D is =
+      if (pair[0] == variable) {
+        return pair[1];
+      }
+    }
+    return ""; //return(false);
+  }
+
+  var ib = getQueryVariable("ID_student");
+  if (ib == "") {
+    document.getElementById("ID_student").value = "No value provided.";
+  } else {
+    while (ib.includes("+")) {
+      ib = ib.replace("+", " ", ib);
+    }
+    document.getElementById("ID_student").value = ib;
+  }
+
+  var ib = getQueryVariable("fname");
+  document.getElementById("fname").value = ib;
+
+  var ib = getQueryVariable("lname");
+  document.getElementById("lname").value = ib;
+
+  //var ib = getQueryVariable("phone");
+  //	document.getElementById('phone').value = ib;
+
+  var ib = getQueryVariable("phone");
+  while (ib.includes("+")) {
+    ib = ib.replace("+", " ", ib);
+  }
+  document.getElementById("phone").value = ib;
+
+  var ib = getQueryVariable("email");
+  document.getElementById("email").value = ib;
+
+  var ib = getQueryVariable("status");
+  document.getElementById("status0").value = ib;
+  if (status0 && ib == "0") {
+    document.getElementById("status0").checked = true;
+  } else if (status1 && ib == "1") {
+    document.getElementById("status1").checked = true;
+  } else if (!status0 && !status1) {
+    document.getElementById("status0").checked = true;
+    document.getElementById("status1").checked = false;
+  } else {
+    // DEFAULT
+    document.getElementById("status0").checked = true;
+    document.getElementById("status1").checked = false;
+  }
+
+  var ib = getQueryVariable("start_dte");
+  document.getElementById("start_dte").value = ib;
+
+  var ib = getQueryVariable("end_dte");
+  document.getElementById("end_dte").value = ib;
+</script>
